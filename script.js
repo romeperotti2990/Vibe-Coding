@@ -3,6 +3,24 @@ let autoClickers = 0;
 let clickValue = 1;
 let income = 0;
 let multipliers = 0;
+
+function saveGame() {
+    const gameState = { gold, autoClickers, clickValue, income, multipliers };
+    localStorage.setItem('clickerGame', JSON.stringify(gameState));
+}
+
+function loadGame() {
+    const saved = localStorage.getItem('clickerGame');
+    if (saved) {
+        const gameState = JSON.parse(saved);
+        gold = gameState.gold || 0;
+        autoClickers = gameState.autoClickers || 0;
+        clickValue = gameState.clickValue || 1;
+        income = gameState.income || 0;
+        multipliers = gameState.multipliers || 0;
+    }
+}
+
 const goldDisplay = document.getElementById('gold');
 const ownedAuto = document.getElementById('ownedAuto');
 const ownedMultiplier = document.getElementById('ownedMultiplier');
@@ -16,10 +34,14 @@ const buyMult100 = document.getElementById('buyMult100');
 const toggleShop = document.getElementById('toggleShop');
 const sidebar = document.querySelector('.sidebar');
 
+loadGame();
+updateDisplay();
+
 function updateDisplay() {
     goldDisplay.textContent = 'Gold: ' + gold + ' (+' + income + '/sec) (+' + clickValue + ' per click)';
     ownedAuto.textContent = 'Owned: ' + autoClickers;
     ownedMultiplier.textContent = 'Owned: ' + multipliers;
+    saveGame();
 }
 
 function buyAuto(amount) {
@@ -44,6 +66,7 @@ function buyMultiplier(amount) {
 
 clickButton.addEventListener('click', () => {
     gold += clickValue;
+    console.log('Clicked! Gold now:', gold);
     updateDisplay();
 });
 
