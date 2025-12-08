@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clicker Game</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; display: flex; height: 100vh; }
+        .game { flex: 1; text-align: center; margin-top: 50px; }
+        .sidebar { width: 250px; padding: 20px; border-left: 1px solid #ccc; background-color: #f9f9f9; }
+        .sidebar.hidden { display: none; }
+        #clickButton { font-size: 24px; padding: 20px; }
+        #gold { font-size: 48px; margin: 20px; }
+        .shop-item { margin-bottom: 20px; }
+        .shop-item button { padding: 10px; }
+        #toggleShop { position: fixed; right: 10px; top: 50%; transform: translateY(-50%); padding: 10px; font-size: 18px; background: #f9f9f9; border: 1px solid #ccc; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="game">
+        <h1>Clicker Game</h1>
+        <p id="gold">Gold: 0</p>
+        <button id="clickButton">Click Me!</button>
+    </div>
+    <button id="toggleShop">☰ Shop</button>
+    <div class="sidebar">
+        <h2>Shop</h2>
+        <div class="shop-item">
+            <p>Auto-Clicker: 10 gold (Gives 1 gold/sec)</p>
+            <button id="buyAutoClicker">Buy</button>
+        </div>
+        <div class="shop-item">
+            <p>Super Auto-Clicker: 100 gold (Gives 10 gold/sec)</p>
+            <button id="buySuperAutoClicker">Buy</button>
+        </div>
+        <div class="shop-item">
+            <p>Gold Multiplier: 50 gold (Doubles click value)</p>
+            <button id="buyMultiplier">Buy</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
