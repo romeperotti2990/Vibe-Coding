@@ -31,6 +31,7 @@ const buy100 = document.getElementById('buy100');
 const buyMult1 = document.getElementById('buyMult1');
 const buyMult10 = document.getElementById('buyMult10');
 const buyMult100 = document.getElementById('buyMult100');
+const resetButton = document.getElementById('resetButton');
 const toggleShop = document.getElementById('toggleShop');
 const sidebar = document.querySelector('.sidebar');
 
@@ -78,7 +79,20 @@ buyMult1.addEventListener('click', () => buyMultiplier(1));
 buyMult10.addEventListener('click', () => buyMultiplier(10));
 buyMult100.addEventListener('click', () => buyMultiplier(100));
 
+resetButton.addEventListener('click', () => {
+    if (confirm('Are you sure you want to reset the game? All progress will be lost!')) {
+        gold = 0;
+        autoClickers = 0;
+        clickValue = 1;
+        income = 0;
+        multipliers = 0;
+        localStorage.removeItem('clickerGame');
+        updateDisplay();
+    }
+});
+
 toggleShop.addEventListener('click', () => {
+    console.log('Toggle shop clicked');
     sidebar.classList.toggle('hidden');
     toggleShop.textContent = sidebar.classList.contains('hidden') ? '☰' : '✕';
 });
